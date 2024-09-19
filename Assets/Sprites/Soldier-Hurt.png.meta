@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e9dccf923afe84d449242b140e1cd485
+guid: fd2f695fb8c641541827514410887f71
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60b8a38b0a87fa345847eab717bb7fd4
-      internalID: -31228026
+      spriteID: 19868f6bd75ca734288a0240ecfe18f3
+      internalID: -1139703820
       vertices: []
       indices: 
       edges: []
@@ -132,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e9d109edcc8d0d4690a855366c326d6
-      internalID: -520593995
+      spriteID: 2d434d5fd5e6e1947bba9c7ca43a1f57
+      internalID: -733363258
       vertices: []
       indices: 
       edges: []
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ae5455da2cb30141854bc74647c3560
-      internalID: -1899938390
+      spriteID: 7c6b30563b8a61c43885746680e68490
+      internalID: 920801671
       vertices: []
       indices: 
       edges: []
@@ -174,8 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33bc3d0720d039b4bb928b988c3edfce
-      internalID: 46990570
+      spriteID: f9b35988f11aa604e92104ea0d012659
+      internalID: -1651467190
       vertices: []
       indices: 
       edges: []
@@ -191,10 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Soldier-Hurt_0: -31228026
-      Soldier-Hurt_1: -520593995
-      Soldier-Hurt_2: -1899938390
-      Soldier-Hurt_3: 46990570
+      Soldier-Hurt_0: -1139703820
+      Soldier-Hurt_1: -733363258
+      Soldier-Hurt_2: 920801671
+      Soldier-Hurt_3: -1651467190
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
