@@ -21,19 +21,19 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1139703820, guid: fd2f695fb8c641541827514410887f71, type: 3}
-    - time: 0.15
-      value: {fileID: -733363258, guid: fd2f695fb8c641541827514410887f71, type: 3}
-    - time: 0.3
-      value: {fileID: 920801671, guid: fd2f695fb8c641541827514410887f71, type: 3}
-    - time: 0.45
-      value: {fileID: -1651467190, guid: fd2f695fb8c641541827514410887f71, type: 3}
+      value: {fileID: 1787916319, guid: cb2ed5fd92ebc9b48be94db0a37f8fea, type: 3}
+    - time: 0.125
+      value: {fileID: -1182667581, guid: cb2ed5fd92ebc9b48be94db0a37f8fea, type: 3}
+    - time: 0.25
+      value: {fileID: 518679346, guid: cb2ed5fd92ebc9b48be94db0a37f8fea, type: 3}
+    - time: 0.375
+      value: {fileID: -522639805, guid: cb2ed5fd92ebc9b48be94db0a37f8fea, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 20
+  m_SampleRate: 24
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -50,16 +50,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1139703820, guid: fd2f695fb8c641541827514410887f71, type: 3}
-    - {fileID: -733363258, guid: fd2f695fb8c641541827514410887f71, type: 3}
-    - {fileID: 920801671, guid: fd2f695fb8c641541827514410887f71, type: 3}
-    - {fileID: -1651467190, guid: fd2f695fb8c641541827514410887f71, type: 3}
+    - {fileID: 1787916319, guid: cb2ed5fd92ebc9b48be94db0a37f8fea, type: 3}
+    - {fileID: -1182667581, guid: cb2ed5fd92ebc9b48be94db0a37f8fea, type: 3}
+    - {fileID: 518679346, guid: cb2ed5fd92ebc9b48be94db0a37f8fea, type: 3}
+    - {fileID: -522639805, guid: cb2ed5fd92ebc9b48be94db0a37f8fea, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5
+    m_StopTime: 0.41666666
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -79,7 +79,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.5
+  - time: 0.41666666
     functionName: "DesactivaDa\xF1o"
     data: 
     objectReferenceParameter: {fileID: 0}

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Jugador : MonoBehaviour
@@ -22,6 +24,12 @@ public class Jugador : MonoBehaviour
     public AudioClip sonidoCaminar;
     private AudioSource audioSource;
 
+    //Escaleras
+    [SerializeField] private float velocidadEscalar;
+    private float gravedadInit;
+    private bool escalando;
+    private Vector2 input;
+
     private bool sonidoEnReproduccion = false;  // Flag para evitar solapamientos de sonido
 
     // Start is called before the first frame update
@@ -31,7 +39,8 @@ public class Jugador : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
-        audioSource = GetComponent<AudioSource>();  // Obtiene el componente de sonido
+        audioSource = GetComponent<AudioSource>();// Obtiene el componente de sonido
+        gravedadInit = rigidbody2D.gravityScale;
 
         // Asegúrate de que el AudioSource esté configurado
         if (audioSource == null)
@@ -50,6 +59,7 @@ public class Jugador : MonoBehaviour
         if (!puedeMoverse) return;
 
         movimiento = Input.GetAxis("Horizontal") * speedCaminar;
+        input.y = Input.GetAxis("Vertical");
         rigidbody2D.velocity = new Vector2(movimiento, rigidbody2D.velocity.y);
 
         // Reproduce el sonido de caminar solo si el personaje está en movimiento
@@ -75,7 +85,16 @@ public class Jugador : MonoBehaviour
             }
         }
 
+        if (Math.Abs(rigidbody2D.velocity.y) > Mathf.Epsilon)
+        {
+            animator.SetFloat("VelocidadY", Mathf.Sign(rigidbody2D.velocity.y));
+        }
+        else {
+            animator.SetFloat("VelocidadY", 0);
+        }
+
         ProcesarSalto();
+        Escalar();
         animator.SetBool("Recibedaño", recibeDaño);
     }
 
@@ -141,5 +160,21 @@ public class Jugador : MonoBehaviour
             audioSource.Play();
             sonidoEnReproduccion = true;  // Actualiza el flag
         }
+    }
+
+    private void Escalar() {
+        if ((input.y != 0 || escalando) && (boxCollider.IsTouchingLayers(LayerMask.GetMask("Escaleras"))))
+        {
+            Vector2 velocidadSubida = new Vector2(rigidbody2D.velocity.x, input.y * velocidadEscalar);
+            rigidbody2D.velocity = velocidadSubida;
+            rigidbody2D.gravityScale = 0;
+            escalando = true;
+        }
+        else {
+            rigidbody2D.gravityScale = gravedadInit;
+            escalando = false;
+        }
+
+        animator.SetBool("Escalando",escalando);
     }
 }
