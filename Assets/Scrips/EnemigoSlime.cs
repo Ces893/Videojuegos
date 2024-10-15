@@ -71,7 +71,8 @@ public class EnemigoSlime : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Jugador>().DañoRecibido();
+            Vector2 dirreccion = new Vector2(transform.position.x, 0);
+            collision.gameObject.GetComponent<Jugador>().DañoRecibido(dirreccion);
             GameManager.Instance.perderVida();
         }
     }

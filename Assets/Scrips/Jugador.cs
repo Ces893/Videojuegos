@@ -17,7 +17,6 @@ public class Jugador : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider;
 
-    private bool puedeMoverse = true;
     private bool recibeDaño;
 
     // Sonido de caminar
@@ -56,9 +55,8 @@ public class Jugador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!puedeMoverse) return;
-
-        movimiento = Input.GetAxis("Horizontal") * speedCaminar;
+        if (!recibeDaño)
+            movimiento = Input.GetAxis("Horizontal") * speedCaminar;
         input.y = Input.GetAxis("Vertical");
         rigidbody2D.velocity = new Vector2(movimiento, rigidbody2D.velocity.y);
 
@@ -95,12 +93,12 @@ public class Jugador : MonoBehaviour
 
         ProcesarSalto();
         Escalar();
-        animator.SetBool("Recibedaño", recibeDaño);
+        animator.SetBool("Recibedamage", recibeDaño);
     }
 
     void ProcesarSalto()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && EstaenSuelo())
+        if (Input.GetKeyDown(KeyCode.Space) && EstaenSuelo() && !recibeDaño)
         {
             rigidbody2D.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
         }
@@ -114,24 +112,12 @@ public class Jugador : MonoBehaviour
         return raycastHit2D.collider != null;
     }
 
-    public void DañoRecibido()
+    public void DañoRecibido(Vector2 direccion)
     {
-        if (!recibeDaño)
-        {
-            puedeMoverse = false;
+        if (!recibeDaño) {
             recibeDaño = true;
-
-            Vector2 direccionGolpe;
-
-            if (rigidbody2D.velocity.x > 0)
-            {
-                direccionGolpe = new Vector2(-1, 1);
-            }
-            else { direccionGolpe = new Vector2(1, 1); }
-
-            rigidbody2D.AddForce(direccionGolpe * fuerzaGolpe);
-
-            StartCoroutine(EsperarActividadMovimiento());
+            Vector2 rebore = new Vector2(transform.position.x - direccion.x, 0.5f).normalized;
+            rigidbody2D.AddForce(rebore* fuerzaGolpe, ForceMode2D.Impulse);
         }
     }
 
@@ -141,16 +127,6 @@ public class Jugador : MonoBehaviour
         rigidbody2D.velocity = Vector2.zero;
     }
 
-    IEnumerator EsperarActividadMovimiento()
-    {
-        yield return new WaitForSeconds(0.1f);
-
-        while (!EstaenSuelo())
-        {
-            yield return null;
-        }
-        puedeMoverse = true;
-    }
 
     // Método para reproducir sonido
     void ReproducirSonido()
