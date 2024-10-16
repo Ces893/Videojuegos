@@ -64,8 +64,18 @@ public class Jugador : MonoBehaviour
         if (movimiento != 0)
         {
             animator.SetBool("Caminando", true);
-            spriteRenderer.flipX = movimiento < 0;
-            
+
+            Vector3 escala = transform.localScale;
+            if (movimiento > 0)
+            {
+                escala.x = Mathf.Abs(escala.x);
+            }
+            else if (movimiento < 0)
+            {
+                escala.x = -Mathf.Abs(escala.x);
+            }
+            transform.localScale = escala;
+
             // Reproduce el sonido de caminar si no está en reproducción
             if (!sonidoEnReproduccion)
             {
