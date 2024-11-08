@@ -11,6 +11,7 @@ public class Jugador : MonoBehaviour
     public float fuerzaSalto;
     public LayerMask capaSuelo;
     public float fuerzaGolpe;
+    public int danioPorGolpe = 10;
 
     private Rigidbody2D rigidbody2D;
     private Animator animator;
@@ -162,5 +163,19 @@ public class Jugador : MonoBehaviour
         }
 
         animator.SetBool("Escalando",escalando);
+    }
+
+    // Método para infligir daño al enemigo
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemigo"))
+        {
+            EnemigoSlime enemigo = collision.GetComponent<EnemigoSlime>();
+            if (enemigo != null)
+            {
+                enemigo.TomarDaño(danioPorGolpe); // Inflige daño
+                GameManager.Instance.AddDamage(danioPorGolpe); // Suma el daño al GameManager
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@ public class Canvas : MonoBehaviour
     }
     // Update is called once per frame
     void Update(){
-        TextMeshProUGUI.text = "Monedas : " + GameManager.Instance.MonedasTotales.ToString();
+        TextMeshProUGUI.text = ": "+GameManager.Instance.MonedasTotales.ToString();
     }
     public void DesactivarVida(int indice){
         vidas[indice].SetActive(false);

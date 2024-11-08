@@ -12,5 +12,9 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene("Scenes/menuInicio");
     }
+    public void AbrirOpciones()
+    {
+        SceneManager.LoadScene("Opciones");
+    }
 
 }
