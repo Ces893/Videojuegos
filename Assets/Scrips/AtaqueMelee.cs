@@ -38,7 +38,17 @@ public class AtaqueMelee : MonoBehaviour
 
         foreach (Collider2D collisionador in objetos) {
             if (collisionador.CompareTag("Enemigo")) {
-                collisionador.transform.GetComponent < EnemigoSlime>().TomarDaño(daño);
+                EnemigoSlime slime = collisionador.transform.GetComponent<EnemigoSlime>();
+                if (slime != null)
+                {
+                    slime.TomarDaño(daño);
+                }
+
+                Enemigo2D enemigo2D = collisionador.transform.GetComponent<Enemigo2D>();
+                if (enemigo2D != null)
+                {
+                    enemigo2D.TomarDaño(daño);
+                }
             }
         }
     }
@@ -46,6 +56,6 @@ public class AtaqueMelee : MonoBehaviour
    private void OnDrawGizmos(){
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(controldorGolpe.position, radioGolpe);
-    }
+   }
 
 }

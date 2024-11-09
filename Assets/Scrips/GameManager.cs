@@ -16,20 +16,17 @@ public class GameManager : MonoBehaviour
     private int monedas = 0;
     private int totalDamage = 0;
     public float tiempo;
+    public Animator animator;
     //private GameData gData;
     //private GameDataRepository gDataRepository;
-    public void Awake()
+    void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            //gDataRepository = new GameDataRepository();
-            //gData = gDataRepository.LoadGame();
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject);
             Debug.Log("Error");
         }
     }
@@ -70,16 +67,26 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("coinText no está asignado en GameManager.");
         }
     }
+
     public void perderVida()
     {
         vidas -= 1;
         if (vidas == 0)
         {
-            SceneManager.LoadScene(2);
+            animator.SetTrigger("Muerte");
+            StartCoroutine(EjecutarMuerte());
         }
         //gDataRepository.SaveGame(gData);
         canvas.DesactivarVida(vidas);
     }
+
+    private IEnumerator EjecutarMuerte()
+    {
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+        SceneManager.LoadScene("MENOP");
+    }
+
     public bool RecuperarVida()
     {
         if (vidas == 3) { return false; }
@@ -101,4 +108,6 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log(monedas);
     }
+
+
 }

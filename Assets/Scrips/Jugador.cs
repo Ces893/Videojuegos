@@ -26,9 +26,16 @@ public class Jugador : MonoBehaviour
 
     //Escaleras
     [SerializeField] private float velocidadEscalar;
-    private float gravedadInit;
+    private float gravedadInit; //
     private bool escalando;
     private Vector2 input;
+
+    //Dash
+    public float velocidadDash;
+    public float timepoDash;
+    private bool puedeDashear = true;
+    private bool sePuedeMover = true;
+    [SerializeField] private TrailRenderer trailRenderer;
 
     private bool sonidoEnReproduccion = false;  // Flag para evitar solapamientos de sonido
 
@@ -56,10 +63,13 @@ public class Jugador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!recibeDaño)
+        if (!recibeDaño && sePuedeMover)
+        {
             movimiento = Input.GetAxis("Horizontal") * speedCaminar;
+            rigidbody2D.velocity = new Vector2(movimiento, rigidbody2D.velocity.y);
+        }
         input.y = Input.GetAxis("Vertical");
-        rigidbody2D.velocity = new Vector2(movimiento, rigidbody2D.velocity.y);
+        //rigidbody2D.velocity = new Vector2(movimiento, rigidbody2D.velocity.y);
 
         // Reproduce el sonido de caminar solo si el personaje está en movimiento
         if (movimiento != 0)
@@ -100,6 +110,10 @@ public class Jugador : MonoBehaviour
         }
         else {
             animator.SetFloat("VelocidadY", 0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && puedeDashear) {
+            StartCoroutine(Dash());
         }
 
         ProcesarSalto();
@@ -177,5 +191,21 @@ public class Jugador : MonoBehaviour
                 GameManager.Instance.AddDamage(danioPorGolpe); // Suma el daño al GameManager
             }
         }
+    }
+
+    private IEnumerator Dash() {
+        sePuedeMover = false;
+        puedeDashear = false;
+        rigidbody2D.gravityScale = 0;
+        rigidbody2D.velocity = new Vector2(velocidadDash * transform.localScale.x, 0);
+        animator.SetTrigger("Dash");
+        trailRenderer.emitting = true;
+
+        yield return new WaitForSeconds(timepoDash);
+
+        sePuedeMover = true;
+        puedeDashear = true;
+        rigidbody2D.gravityScale = gravedadInit;
+        trailRenderer.emitting = false;
     }
 }
