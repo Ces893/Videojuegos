@@ -40,6 +40,7 @@ public class GameController : MonoBehaviour
     {
         totalTime += time;
     }
+
     private void Update()
     {
         // Acumula el tiempo de juego en cada frame

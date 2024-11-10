@@ -6,7 +6,7 @@ public class ScoreButtonHandler : MonoBehaviour
     public void RepetirEscena()
     {
         GameManager.Instance.ResetMonedas();
-        SceneManager.LoadScene("escena 2"); // Repite la escena 2
+        SceneManager.LoadScene("MENOP");
         
     }
 

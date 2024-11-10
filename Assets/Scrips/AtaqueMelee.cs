@@ -8,7 +8,7 @@ public class AtaqueMelee : MonoBehaviour
 
     [SerializeField] private float radioGolpe;
 
-    [SerializeField] private float daño;
+    [SerializeField] private int daño;
 
     [SerializeField] private float tiemporAtaque;
 

@@ -33,10 +33,11 @@ public class EnemigoSlime : MonoBehaviour
         }
     }
 
-    public void TomarDaño(float daño)
+    public void TomarDaño(int daño)
     {
         vida -= daño;
-        if(vida <= 0)
+        GameManager.Instance.AddDamage(daño);
+        if (vida <= 0)
         {
             Muerte();
         }

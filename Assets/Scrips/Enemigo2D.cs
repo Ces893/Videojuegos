@@ -26,9 +26,10 @@ public class Enemigo2D : MonoBehaviour
         DetectarJugador();
     }
 
-    public void TomarDaño(float daño)
+    public void TomarDaño(int daño)
     {
         vida -= daño;
+        GameManager.Instance.AddDamage(daño);
         if (vida <= 0)
         {
             Muerte();

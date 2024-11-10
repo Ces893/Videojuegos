@@ -188,7 +188,7 @@ public class Jugador : MonoBehaviour
             if (enemigo != null)
             {
                 enemigo.TomarDaño(danioPorGolpe); // Inflige daño
-                GameManager.Instance.AddDamage(danioPorGolpe); // Suma el daño al GameManager
+                //GameManager.Instance.AddDamage(danioPorGolpe); // Suma el daño al GameManager
             }
         }
     }
